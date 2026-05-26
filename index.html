@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Praveen Ayethepalle — Hocking Dental Care, Perth</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --orange: #FF5C1A;
+    --orange-dim: #CC4A15;
+    --black: #0A0A0A;
+    --charcoal: #141414;
+    --dark: #1C1C1C;
+    --mid: #2A2A2A;
+    --border: rgba(255,255,255,0.08);
+    --text: #F0EDE8;
+    --muted: #888;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: rgba(10,10,10,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo { font-family: var(--serif); font-size: 1.3rem; font-weight: 300; letter-spacing: 0.03em; }
+  .nav-logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--muted); font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.25s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta { background: var(--orange); color: #fff; border: none; padding: 0.65rem 1.6rem; font-family: var(--sans); font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.25s; text-decoration: none; }
+  .nav-cta:hover { background: var(--orange-dim); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(255,92,26,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-text { max-width: 560px; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--orange); }
+  .hero-title { font-family: var(--serif); font-size: clamp(3rem, 5vw, 5.2rem); font-weight: 300; line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 1.5rem; }
+  .hero-title em { font-style: italic; color: var(--orange); }
+  .hero-desc { font-size: 1rem; color: var(--muted); max-width: 420px; margin-bottom: 2.5rem; line-height: 1.8; }
+  .hero-actions { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; }
+  .btn-primary { background: var(--orange); color: #fff; border: none; padding: 1rem 2.2rem; font-family: var(--sans); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.25s, transform 0.2s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: var(--orange-dim); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text); border: 0.5px solid rgba(255,255,255,0.3); padding: 1rem 2.2rem; font-family: var(--sans); font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: border-color 0.25s, color 0.25s; text-decoration: none; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--orange); color: var(--orange); }
+
+  .hero-visual { display: flex; flex-direction: column; align-items: flex-end; gap: 1.5rem; }
+  .hero-card-main { background: var(--charcoal); border: 0.5px solid var(--border); padding: 2rem; width: 360px; position: relative; }
+  .hero-card-main::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--orange); }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.2rem; }
+  .stat { text-align: center; padding: 1rem; background: var(--mid); }
+  .stat-num { font-family: var(--serif); font-size: 2.2rem; font-weight: 300; color: var(--orange); line-height: 1; }
+  .stat-label { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.08em; margin-top: 0.3rem; }
+  .hero-badge { display: flex; align-items: center; gap: 0.75rem; background: var(--mid); border: 0.5px solid var(--border); padding: 0.75rem 1rem; font-size: 0.8rem; color: var(--muted); width: 360px; }
+  .badge-dot { width: 8px; height: 8px; background: #4caf50; border-radius: 50%; flex-shrink: 0; }
+  .hero-lang-badge { display: flex; align-items: center; gap: 0.5rem; background: var(--dark); border: 0.5px solid var(--border); padding: 0.6rem 1rem; font-size: 0.78rem; color: var(--muted); width: 360px; flex-wrap: wrap; }
+  .lang-pill { background: var(--mid); color: var(--text); padding: 0.2rem 0.6rem; font-size: 0.72rem; }
+  .doctor-name-card { font-family: var(--serif); font-size: 1.3rem; font-weight: 300; margin-bottom: 0.2rem; color: var(--text); }
+  .doctor-title-card { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.06em; }
+
+  /* SECTION COMMONS */
+  section { padding: 6rem 4rem; }
+  .section-label { display: inline-flex; align-items: center; gap: 0.75rem; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--orange); margin-bottom: 1rem; }
+  .section-label::before { content: ''; display: block; width: 20px; height: 1px; background: var(--orange); }
+  .section-title { font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.15; margin-bottom: 1.5rem; }
+  .section-title em { font-style: italic; color: var(--orange); }
+
+  /* ABOUT */
+  .about { background: var(--charcoal); }
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+  .about-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: 0.98rem; }
+  .credentials { margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem; }
+  .cred-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.9rem 1.1rem; background: var(--dark); border-left: 2px solid var(--orange); }
+  .cred-icon { color: var(--orange); font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+  .cred-text { font-size: 0.85rem; }
+  .cred-text strong { display: block; color: var(--text); font-weight: 500; margin-bottom: 0.1rem; }
+  .cred-text span { color: var(--muted); font-size: 0.8rem; }
+
+  .about-visual-stack { display: flex; flex-direction: column; gap: 1rem; }
+  .experience-bar { background: var(--dark); padding: 1.5rem; border: 0.5px solid var(--border); }
+  .exp-header { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.75rem; }
+  .exp-header span:first-child { color: var(--muted); }
+  .exp-header span:last-child { color: var(--orange); }
+  .exp-bar { height: 3px; background: var(--mid); position: relative; overflow: hidden; }
+  .exp-fill { height: 100%; background: var(--orange); animation: fillBar 1.5s ease forwards; transform-origin: left; }
+  @keyframes fillBar { from { width: 0; } }
+  .philosophy-block { background: var(--mid); padding: 2rem; border: 0.5px solid var(--border); position: relative; }
+  .philosophy-block::before { content: '\201C'; font-family: var(--serif); font-size: 6rem; color: var(--orange); opacity: 0.3; position: absolute; top: -1rem; left: 1rem; line-height: 1; }
+  .philosophy-block p { font-family: var(--serif); font-size: 1.2rem; font-style: italic; color: var(--text); line-height: 1.6; margin: 0; padding-top: 1rem; }
+  .philosophy-block cite { display: block; margin-top: 0.75rem; font-size: 0.78rem; color: var(--muted); font-style: normal; letter-spacing: 0.06em; }
+
+  /* SERVICES */
+  .services { background: var(--black); }
+  .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1.5rem; }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+  .service-card { background: var(--charcoal); padding: 2.2rem; transition: background 0.3s; cursor: default; }
+  .service-card:hover { background: var(--dark); }
+  .service-num { font-family: var(--serif); font-size: 3rem; font-weight: 300; color: var(--orange); opacity: 0.4; line-height: 1; margin-bottom: 1rem; }
+  .service-name { font-family: var(--serif); font-size: 1.4rem; font-weight: 400; margin-bottom: 0.75rem; color: var(--text); }
+  .service-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.75; }
+  .service-tag { display: inline-block; margin-top: 1rem; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); border: 0.5px solid var(--orange); padding: 0.3rem 0.7rem; }
+
+  /* PROCESS */
+  .process { background: var(--charcoal); }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3rem; position: relative; }
+  .process-steps::before { content: ''; position: absolute; top: 2.2rem; left: 12.5%; right: 12.5%; height: 1px; background: var(--border); z-index: 0; }
+  .process-step { padding: 0 1.5rem; position: relative; z-index: 1; }
+  .step-circle { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--orange); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.2rem; color: var(--orange); background: var(--charcoal); margin-bottom: 1.5rem; }
+  .step-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; margin-bottom: 0.5rem; }
+  .step-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.7; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--black); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .testimonial-card { background: var(--charcoal); border: 0.5px solid var(--border); padding: 2rem; position: relative; }
+  .testimonial-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: transparent; transition: background 0.3s; }
+  .testimonial-card:hover::after { background: var(--orange); }
+  .stars { color: var(--orange); font-size: 0.9rem; margin-bottom: 1rem; }
+  .testimonial-text { font-family: var(--serif); font-size: 1.05rem; font-style: italic; color: var(--text); line-height: 1.7; margin-bottom: 1.5rem; }
+  .testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+  .author-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--orange); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 500; color: #fff; flex-shrink: 0; }
+  .author-name { font-size: 0.85rem; font-weight: 500; }
+  .author-detail { font-size: 0.75rem; color: var(--muted); }
+
+  /* CTA */
+  .cta-section { background: var(--charcoal); border-top: 0.5px solid var(--border); padding: 6rem 4rem; text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(255,92,26,0.08) 0%, transparent 70%); pointer-events: none; }
+  .cta-section .section-title { font-size: clamp(2.2rem, 4vw, 3.8rem); }
+  .cta-section p { color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; font-size: 1rem; }
+  .cta-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .clinic-details { margin-top: 2.5rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .clinic-detail-item { font-size: 0.82rem; color: var(--muted); display: flex; flex-direction: column; gap: 0.2rem; }
+  .clinic-detail-item strong { color: var(--text); font-weight: 500; font-size: 0.85rem; }
+
+  /* FOOTER */
+  footer { background: var(--black); border-top: 0.5px solid var(--border); padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: var(--serif); font-size: 1.2rem; font-weight: 300; }
+  .footer-logo span { color: var(--orange); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.78rem; color: var(--muted); text-decoration: none; letter-spacing: 0.08em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--text); }
+  .footer-copy { font-size: 0.75rem; color: var(--muted); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-eyebrow { animation: fadeUp 0.8s ease 0.2s both; }
+  .hero-title   { animation: fadeUp 0.8s ease 0.4s both; }
+  .hero-desc    { animation: fadeUp 0.8s ease 0.6s both; }
+  .hero-actions { animation: fadeUp 0.8s ease 0.8s both; }
+  .hero-visual  { animation: fadeUp 0.8s ease 0.5s both; }
+
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; gap: 3rem; }
+    .hero-visual { align-items: flex-start; }
+    .hero-card-main, .hero-badge, .hero-lang-badge { width: 100%; }
+    section { padding: 4rem 2rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; }
+    .footer-links { flex-wrap: wrap; }
+    .clinic-details { gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Dr. Praveen <span>Ayethepalle</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Patients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:0893062755" class="nav-cta">Book Appointment</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-eyebrow">Smile Makeover Specialist · Perth, WA</div>
+    <h1 class="hero-title">
+      Your Dream<br>
+      Smile is <em>One</em><br>
+      Visit Away
+    </h1>
+    <p class="hero-desc">
+      Dr. Praveen Ayethepalle brings over a decade of family dentistry expertise, a Masters in Forensic Odontology, and a genuine passion for transforming smiles — from everyday care to complex cosmetic makeovers.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:0893062755" class="btn-primary">📞 (08) 9306 2755</a>
+      <a href="#services" class="btn-ghost">Explore Treatments</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-card-main">
+      <div class="doctor-name-card">Dr. Praveen Ayethepalle</div>
+      <div class="doctor-title-card">BDS · M.Forensic Odontology (UWA) · General &amp; Cosmetic Dentist</div>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Years in Practice</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2011</div>
+          <div class="stat-label">Masters, UWA</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Languages Spoken</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">ADA</div>
+          <div class="stat-label">Member</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-lang-badge">
+      <span style="font-size:0.75rem;margin-right:0.25rem;">Speaks:</span>
+      <span class="lang-pill">English</span>
+      <span class="lang-pill">Hindi</span>
+      <span class="lang-pill">Telugu</span>
+    </div>
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      Now accepting new patients at Hocking Dental Care, Perth WA
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <div class="section-label">About the Doctor</div>
+      <h2 class="section-title">Theoretical Depth.<br><em>Practical Mastery.</em></h2>
+      <p>Dr. Praveen Ayethepalle completed his Bachelor of Dental Science in India in 2007, before moving to Australia and furthering his education with a Master's degree in Forensic Odontology from the University of Western Australia in 2011 — giving him a uniquely analytical and science-driven approach to dental care.</p>
+      <p>He is well versed in all aspects of modern dental care, ranging from routine prevention right through to complex cosmetic surgery. His drive to practice dentistry stems from a genuine desire to help others manage their oral health and avoid suffering — especially for emergency patients in acute pain.</p>
+      <p>Dr. Ayethepalle is currently undertaking a two-year residency course in Orthodontics and Children's Dentistry, demonstrating his relentless commitment to expanding his clinical skills for the benefit of patients of all ages.</p>
+
+      <div class="credentials">
+        <div class="cred-item">
+          <div class="cred-icon">🎓</div>
+          <div class="cred-text">
+            <strong>Master of Forensic Odontology — University of Western Australia</strong>
+            <span>Graduated 2011 · Advanced clinical &amp; medico-legal dental sciences</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">🦷</div>
+          <div class="cred-text">
+            <strong>Bachelor of Dental Science — India</strong>
+            <span>Graduated 2007 · Foundation of comprehensive dental care</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">📚</div>
+          <div class="cred-text">
+            <strong>Orthodontics &amp; Paediatric Dentistry Residency (Current)</strong>
+            <span>2-year postgraduate residency · Monthly training in Sydney</span>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-icon">🏅</div>
+          <div class="cred-text">
+            <strong>Member — Australian Dental Association (ADA)</strong>
+            <span>Committed to ongoing CPD and professional excellence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-visual-stack">
+      <div class="experience-bar">
+        <div class="exp-header"><span>Cosmetic &amp; Restorative Dentistry</span><span>Expert</span></div>
+        <div class="exp-bar"><div class="exp-fill" style="width:95%"></div></div>
+      </div>
+      <div class="experience-bar">
+        <div class="exp-header"><span>Dental Implants</span><span>Advanced</span></div>
+        <div class="exp-bar"><div class="exp-fill" style="width:88%;animation-delay:0.2s"></div></div>
+      </div>
+      <div class="experience-bar">
+        <div class="exp-header"><span>Emergency Dental Care</span><span>Specialist</span></div>
+        <div class="exp-bar"><div class="exp-fill" style="width:92%;animation-delay:0.3s"></div></div>
+      </div>
+      <div class="experience-bar">
+        <div class="exp-header"><span>Orthodontics &amp; Children's Dentistry</span><span>Advanced</span></div>
+        <div class="exp-bar"><div class="exp-fill" style="width:78%;animation-delay:0.4s"></div></div>
+      </div>
+      <div class="experience-bar">
+        <div class="exp-header"><span>Forensic Odontology</span><span>Masters-Qualified</span></div>
+        <div class="exp-bar"><div class="exp-fill" style="width:90%;animation-delay:0.5s"></div></div>
+      </div>
+
+      <div class="philosophy-block">
+        <p>My aim is to help every patient achieve the smile of their dreams — and keep it healthy for life.</p>
+        <cite>— Dr. Praveen Ayethepalle</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Total <em>Smile</em> Makeover<br>Services</h2>
+    </div>
+    <p style="color:var(--muted);max-width:320px;font-size:0.9rem;">From routine check-ups to complete cosmetic transformations — every case is personally handled by Dr. Ayethepalle at Hocking Dental Care.</p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-name">Smile Makeovers</div>
+      <p class="service-desc">A comprehensive, personalised redesign of your smile combining veneers, whitening, contouring and more — tailored to your facial structure and aesthetic goals.</p>
+      <span class="service-tag">Cosmetic</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-name">Dental Implants</div>
+      <p class="service-desc">Titanium implants that integrate with your jawbone to provide a permanent, natural-looking tooth replacement. Dr. Ayethepalle has extensive continuing education in implant dentistry.</p>
+      <span class="service-tag">Restorative</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-name">Teeth Whitening</div>
+      <p class="service-desc">Professional in-chair whitening that safely lifts years of staining — delivering noticeably brighter results in a single comfortable session.</p>
+      <span class="service-tag">Cosmetic</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-name">Invisalign &amp; Orthodontics</div>
+      <p class="service-desc">Discreet, comfortable teeth straightening using clear aligners. Dr. Ayethepalle is currently completing advanced residency training in orthodontics to offer the very best in alignment care.</p>
+      <span class="service-tag">Orthodontic</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-name">Emergency Dental Care</div>
+      <p class="service-desc">One of Dr. Ayethepalle's greatest passions — delivering rapid, compassionate relief for patients suffering severe toothache, trauma, or acute dental emergencies.</p>
+      <span class="service-tag">Emergency</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <div class="service-name">Children's Dentistry</div>
+      <p class="service-desc">Gentle, friendly care for young patients in a calm, welcoming environment. Dr. Ayethepalle is undertaking specialist paediatric training to ensure the highest standard of children's oral health.</p>
+      <span class="service-tag">Paediatric</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div style="text-align:center;margin-bottom:1rem;">
+    <div class="section-label" style="justify-content:center;">How It Works</div>
+    <h2 class="section-title">Your Journey to a <em>Perfect</em> Smile</h2>
+  </div>
+
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-circle">1</div>
+      <div class="step-name">Consultation &amp; Diagnosis</div>
+      <p class="step-desc">A thorough assessment including digital X-rays and a full smile analysis. Dr. Ayethepalle takes time to understand your goals, concerns and dental history.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-circle">2</div>
+      <div class="step-name">Personalised Treatment Plan</div>
+      <p class="step-desc">A customised, sequenced roadmap is designed around your unique needs — with full transparency about procedures, timelines and investment.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-circle">3</div>
+      <div class="step-name">Expert Treatment</div>
+      <p class="step-desc">Each procedure is delivered with clinical precision using the latest technology in our fully-equipped Hocking practice, ensuring comfort and quality results.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-circle">4</div>
+      <div class="step-name">Aftercare &amp; Oral Hygiene</div>
+      <p class="step-desc">Dr. Ayethepalle provides personalised home-care tips and a follow-up maintenance schedule — because a great smile is a lifelong investment.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div style="text-align:center;margin-bottom:1rem;">
+    <div class="section-label" style="justify-content:center;">Patient Stories</div>
+    <h2 class="section-title">What Our <em>Patients</em> Say</h2>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Dr. Praveen transformed my smile completely. I was embarrassed to show my teeth for years. After my treatment at Hocking Dental, I can't stop smiling. His attention to detail is extraordinary."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">RK</div>
+        <div>
+          <div class="author-name">Ravi K.</div>
+          <div class="author-detail">Smile Makeover · Hocking, WA</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"I came in with a severe toothache on a Friday afternoon. Dr. Ayethepalle saw me immediately and resolved the issue with zero fuss. His calm bedside manner made a stressful experience completely manageable."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">SM</div>
+        <div>
+          <div class="author-name">Sarah M.</div>
+          <div class="author-detail">Emergency Care · Wanneroo, WA</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">"Being able to speak Telugu with Dr. Praveen made such a difference — I could explain exactly how I was feeling. He's incredibly knowledgeable and genuinely cares about your long-term oral health."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">PB</div>
+        <div>
+          <div class="author-name">Padma B.</div>
+          <div class="author-detail">Implants &amp; Cosmetic · Joondalup, WA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section class="cta-section" id="contact">
+  <div class="section-label" style="justify-content:center;">Get In Touch</div>
+  <h2 class="section-title">Ready to Transform<br>Your <em>Smile?</em></h2>
+  <p>Book a consultation at Hocking Dental Care and take the first step towards the smile you've always wanted.</p>
+  <div class="cta-actions">
+    <a href="tel:0893062755" class="btn-primary">📞 (08) 9306 2755</a>
+    <a href="#about" class="btn-ghost">Learn More About Dr. Praveen</a>
+  </div>
+
+  <div class="clinic-details">
+    <div class="clinic-detail-item">
+      <strong>📍 Clinic Address</strong>
+      92 Greenfields Circle, Hocking WA 6065
+    </div>
+    <div class="clinic-detail-item">
+      <strong>🏥 Practice</strong>
+      Hocking Dental Care
+    </div>
+    <div class="clinic-detail-item">
+      <strong>🗺️ Nearby Areas</strong>
+      Wanneroo · Joondalup · Madeley · Landsdale
+    </div>
+    <div class="clinic-detail-item">
+      <strong>🌐 Languages</strong>
+      English · Hindi · Telugu
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Dr. Praveen <span>Ayethepalle</span> · Hocking Dental Care</div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#testimonials">Patients</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 Dr. Praveen Ayethepalle. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
